@@ -1,5 +1,7 @@
 module StringCalculator
-  def self.add(numbers)
-    numbers.empty? ? 0 : numbers.to_i
+  def self.add(input)
+    delimiter = [',', "\n"]
+    numbers = input.split(/#{delimiter.join('|')}/).map(&:to_i)
+    numbers.sum
   end
 end
