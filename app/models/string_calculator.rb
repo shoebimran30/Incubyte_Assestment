@@ -3,6 +3,7 @@ module StringCalculator
   def self.add(input)
     delimiter = parse_delimiter(input)
     numbers = parse_numbers(input, delimiter)
+    check_negatives(numbers)
     numbers.sum
   end
 
@@ -27,5 +28,10 @@ module StringCalculator
 
   def self.replace_delimiters(numbers, delimiter)
     delimiter.each { |d| numbers.gsub!(d, ',') }
+  end
+
+  def self.check_negatives(numbers)
+    negatives = numbers.select { |num| num < 0 }
+    raise "negatives not allowed: #{negatives.join(',')}" if negatives.any?
   end
 end
