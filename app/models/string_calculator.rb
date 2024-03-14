@@ -1,9 +1,9 @@
-# app/models/string_calculator.rb
 module StringCalculator
   def self.add(input)
     delimiter = parse_delimiter(input)
     numbers = parse_numbers(input, delimiter)
     check_negatives(numbers)
+    numbers.reject! { |num| num > 1000 }
     numbers.sum
   end
 
